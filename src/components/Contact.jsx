@@ -5,10 +5,7 @@ import { EarthCanvas } from "./canvas";
 import { slideIn } from "../utils/motion";
 import { SectionWrapper } from "../hoc";
 import emailjs from "@emailjs/browser";
-
-// template_49jw5yq
-// service_9gvq101
-// 3lDtCP31mFt_52s7F
+import { profile } from "../constants";
 
 const Contact = () => {
   const formRef = useRef();
@@ -26,24 +23,31 @@ const Contact = () => {
     e.preventDefault();
     setloading(true);
 
-    // template_49jw5yq
-    // service_9gvq101
-    // 3lDtCP31mFt_52s7F
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    // Without EmailJS keys, fall back to the visitor's email app.
+    if (!serviceId || !templateId || !publicKey) {
+      const subject = encodeURIComponent(`Portfolio message from ${form.name}`);
+      const body = encodeURIComponent(`${form.message}\n\n${form.name} (${form.email})`);
+      window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
+      setloading(false);
+      return;
+    }
 
     emailjs
       .send(
-        "service_mb672rh",
-        "template_i8b75ul",
+        serviceId,
+        templateId,
         {
           from_name: form.name,
-          to_name: "Pushpender",
-
+          to_name: profile.name,
           from_email: form.email,
-          to_email: "pushpender200406@gmail.com",
-
+          to_email: profile.email,
           message: form.message,
         },
-        "tCKf322KLxthkTT7v"
+        publicKey
       )
       .then(
         () => {
@@ -70,6 +74,19 @@ const Contact = () => {
       >
         <p className={styles.sectionSubText}>Get in touch</p>
         <h3 className={styles.sectionHeadText}>Contact.</h3>
+        <p className="mt-4 text-secondary text-[16px] leading-[28px]">
+          <a className="text-white underline" href={`mailto:${profile.email}`}>{profile.email}</a>
+          <br />
+          <a className="text-white underline" href={`tel:${profile.phone.replace(/-/g, "")}`}>{profile.phone}</a>
+          <br />
+          <a className="text-white underline" href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          {profile.github && (
+            <>
+              {" | "}
+              <a className="text-white underline" href={profile.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+            </>
+          )}
+        </p>
 
         <form
           ref={formRef}

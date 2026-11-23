@@ -2,9 +2,8 @@ import React from "react";
 import Tilt from "react-parallax-tilt";
 import { motion } from "framer-motion";
 import { styles } from "../styles";
-import { services } from "../constants";
+import { services, profile } from "../constants";
 import { fadeIn, textVariant } from "../utils/motion";
-import { div } from "framer-motion/client";
 import { SectionWrapper } from "../hoc";
 
 const ServiceCard = ({ index, title, icon }) => {
@@ -51,14 +50,23 @@ const About = () => {
         variants={fadeIn("", "", 0.1, 1)}
         className="mt-4 text-secondary text-[14px] sm:text-[17px] max-w-3xl sm:leading-[30px] leading-1"
       >
-        Hi, I’m Yuvraj Singh — a dedicated Full Stack Developer and passionate programmer  
-        with strong skills in C++, Python, and Data Structures & Algorithms (DSA).  
-        I enjoy solving real-world problems through code and have hands-on experience  
-        building responsive websites using React.js, Tailwind CSS, and Node.js.  
-        I’ve participated in coding contests, hackathons like ReImagine,  
-        and I’m continuously improving my development and problem-solving skills.
-
+        Hi, I’m Yuvraj Singh, a Fourth-year Electronics &amp; Telecommunication
+        student at Army Institute of Technology, Pune (CGPA 9.12). I build
+        retrieval-augmented generation systems and machine learning models for
+        regulated domains like compliance and insurance, where every answer needs
+        a citation and every model needs a business reason. I also have a
+        full-stack background with React.js, Node.js and MongoDB. I was selected
+        in the BNP Paribas Hackathon (Top 550 of 65,000+) and was a finalist at
+        Mastercard Code for Change 2025.
       </motion.p>
+      <a
+        href={profile.resume}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-block mt-6 bg-tertiary py-3 px-8 text-white font-bold shadow-md shadow-primary rounded-xl"
+      >
+        Download Resume
+      </a>
       <div className="mt-20 flex  flex-wrap gap-10">
         {services.map((service, index) => (
           <ServiceCard key={index} index={index} {...service} />

@@ -18,8 +18,8 @@ const Hero = () => {
             Hi, I'm <span className="text-[#915eff]">Yuvraj Singh</span>
           </h1>
           <p className={`${styles.heroSubText} mt-2 text-white`}>
-            I build smart Software projects,<br className="sm:block hidden" />{" "}
-            solve DSA, and create responsive websites
+            I build AI &amp; ML systems for regulated industries,<br className="sm:block hidden" />{" "}
+            and full-stack web apps
           </p>
         </div>
       </div>
@@ -27,7 +27,7 @@ const Hero = () => {
       <div className="absolute sm:bottom-24 bottom-36 w-full flex justify-center items-center">
         <a href="#about">
           <div className="w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2">
-            <motion.dev
+            <motion.div
               animate={{
                 y: [0, 24, 0],
               }}

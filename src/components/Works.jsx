@@ -28,7 +28,7 @@ const ProjectCard = ({
         <div
           className="w-full h-[230px] relative cursor-pointer"
           onClick={() => {
-            window.open(live_website_link, "_blank");
+            if (live_website_link) window.open(live_website_link, "_blank");
           }}
         >
           <img
@@ -38,6 +38,7 @@ const ProjectCard = ({
             className="w-full h-full object-cover rounded-2xl"
           />
 
+          {source_code_link && (
           <div className="absolute  inset-0 flex justify-end mt-3 card-img_hover">
             <div
               onClick={() => {
@@ -55,6 +56,7 @@ const ProjectCard = ({
               />
             </div>
           </div>
+          )}
         </div>
         <div className="mt-5">
           <h3 className="text-white font-bold text-[24px]">{name}</h3>
@@ -76,7 +78,7 @@ const Works = () => {
   return (
     <>
       <motion.div variants={textVariant()}>
-        <p className={styles.sectionSubText}>Things I’ve Built </p>
+        <p className={styles.sectionSubText}>Things I’ve Built</p>
         <h2 className={styles.sectionHeadText}>Projects.</h2>
       </motion.div>
       <div className="w-full flex">
@@ -84,8 +86,7 @@ const Works = () => {
           variants={fadeIn("", "", 0.1, 1)}
           className="mt-3 text-secondary text-[17px] sm:text-[17px] max-w-3xl sm:leading-[30px] leading-1"
         >
-          Here are some of the projects I’ve built during my college journey and personal learning. From developing a Health Care Interface using Node.js and MongoDB to streamline medical room tasks, to building an interactive Tic Tac Toe game with HTML, CSS, and JavaScript, these projects highlight my problem-solving mindset and technical creativity. I also explored IoT with an Arduino-based Humidity and Temperature Monitoring system, enabling real-time environmental tracking. To showcase my work, I created and deployed a professional portfolio website using HTML and Node.js, complete with a functional contact form powered by EmailJS for seamless communication.
-          
+          My focus is on AI and data systems that work in regulated settings. IMPART is a RAG-based compliance co-pilot that assesses change requests across multiple jurisdictions with clause-level citations, and TrustGuard is a leakage-safe ML pipeline for flagging risky insurance sales. Alongside these are earlier projects in IoT, Node.js and JavaScript.
         </motion.p>
       </div>
       <div className=" mt-20 flex flex-wrap gap-7">
@@ -97,4 +98,4 @@ const Works = () => {
   );
 };
 
-export default SectionWrapper(Works, "");
+export default SectionWrapper(Works, "projects");

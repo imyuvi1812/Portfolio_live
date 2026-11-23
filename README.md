@@ -1,12 +1,22 @@
-# React + Vite
+# Yuvraj Singh – 3D Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React + Vite + Tailwind + Three.js portfolio.
 
-Currently, two official plugins are available:
+## Run locally
+```
+npm install
+npm run dev
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Edit content
+All text lives in `src/constants/index.js` (profile links, skills, experience, projects).
+Update `profile.linkedin` and `profile.github` there. Add project links via `source_code_link` / `live_website_link`.
 
-## Expanding the ESLint configuration
+## Contact form
+Copy `.env.example` to `.env` and add your own EmailJS service, template and public key.
+Without them the form falls back to opening the visitor's email app.
+On Netlify/Vercel, set the same three `VITE_EMAILJS_*` variables in the site settings.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Deploy
+- Netlify: build command `npm run build`, publish directory `dist` (SPA redirect already in `public/_redirects`).
+- Vercel: import the repo; framework preset Vite.
